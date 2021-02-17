@@ -1,0 +1,124 @@
+/*Big tags*/
+:root {
+    --color_bg: #100020;
+    --color_fg_blue: #201060b0;
+    --color_fg_purple: #302050b0;
+    --color_fg_pink: #401040b0;
+    --color_border_blue: #4090c0;
+    --color_border_purple: #7080a0;
+    --color_border_pink: #806090;
+    --color_text: #90e0e0;
+}
+
+html {
+    background-color: var(--color_bg);
+    color: var(--color_text);
+    font-family: "Rubik";
+    font-size: 24px;
+    margin: 0 10% 0 10%;
+}
+html::after {
+    content: "";
+    background-image: url('background.jpg');
+    background-size: cover;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: -1;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    margin: 10px;
+}
+.findMeButton {
+    background-color: var(--color_fg_pink);
+    border: 3px solid var(--color_border_pink);
+    color: var(--color_text);
+    font-size: 24px;
+}
+
+.mainCity {
+    display: grid;
+    grid-template: 1fr 4fr / 1fr 1fr 2fr;
+    grid-template-areas: "city city list" "pic temp list";
+    background-color: var(--color_fg_purple);
+    border: 3px solid var(--color_border_purple);
+    padding: 15px 15px 0px 15px;
+    margin: 10px;
+}
+.mainCity h3 {
+    grid-area: city;
+}
+.mainCity img {
+    grid-area: pic;
+    width: 50%;
+}
+.mainCity temperature {
+    grid-area: temp;
+}
+.mainCity ul {
+    grid-area: list;
+}
+
+.favTitle {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+.favInput {
+    align-self: center;
+}
+.addButton {
+    background-color: var(--color_fg_pink);
+    border: 3px solid var(--color_border_pink);
+    color: var(--color_text);
+    font-size: 24px;
+}
+
+.favList {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+.favCity {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color_fg_purple);
+    border: 3px solid var(--color_border_purple);
+    padding: 10px 10px 0px 10px;
+    margin: 10px;
+    width: 500px;
+}
+.favCityHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom:10px;
+}
+
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.weatherList li {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--color_fg_blue);
+    border: 3px solid var(--color_border_blue);
+    margin-bottom: 10px;
+    padding: 5px;
+}
+.deleteButton {
+    background-image: url(cross.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
