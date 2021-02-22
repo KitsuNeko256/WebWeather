@@ -16,18 +16,6 @@ html {
     font-size: 36px;
     margin: 0 10% 0 10%;
 }
-html::after {
-    content: "";
-    background-image: url('background.jpg');
-    background-size: cover;
-    opacity: 0.5;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: fixed;
-    z-index: -1;
-}
 
 header {
     display: flex;
@@ -67,8 +55,7 @@ ul {
     width: 100%;
     font-size: 48px; 
 }
-.mainCityHeader img {
-}
+
 .mainCityHeader .temperature {
     width: 50%;
     font-size: 200px;
@@ -80,6 +67,7 @@ ul {
 
 .favTitle {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     margin: 20px;
