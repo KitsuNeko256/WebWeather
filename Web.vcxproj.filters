@@ -18,12 +18,6 @@
     <None Include="styles.css">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="lab5.js">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="script.js">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="index.html">
       <Filter>Header Files</Filter>
     </None>
