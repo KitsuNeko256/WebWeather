@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="main.html">
-      <Filter>Header Files</Filter>
-    </None>
     <None Include="styles.css">
       <Filter>Header Files</Filter>
     </None>
@@ -26,6 +23,9 @@
     </None>
     <None Include="script.js">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="index.html">
+      <Filter>Header Files</Filter>
     </None>
   </ItemGroup>
 </Project>
