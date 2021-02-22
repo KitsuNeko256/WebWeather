@@ -95,6 +95,7 @@ ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin: -20px;
 }
 .favCity {
     display: flex;
@@ -102,8 +103,9 @@ ul {
     background-color: var(--color_fg_purple);
     border: 3px solid var(--color_border_purple);
     padding: 10px 10px 0px 10px;
-    margin-bottom: 20px;
+    margin: 20px;
     width: 700px;
+    flex-grow: 1;
 }
 .favCityHeader {
     display: flex;
