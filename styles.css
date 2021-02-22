@@ -68,9 +68,6 @@ ul {
     font-size: 48px; 
 }
 .mainCityHeader img {
-    width: 50%;
-    height: auto;
-    float: left;
 }
 .mainCityHeader .temperature {
     width: 50%;
@@ -87,6 +84,9 @@ ul {
     align-items: center;
     margin: 20px;
 }
+.favInput {
+    display: flex;
+}
 .favInput textarea {
     background-color: var(--color_fg_pink);
     border: 3px solid var(--color_border_pink);
@@ -95,6 +95,7 @@ ul {
     height: 50px;
     width: 800px;
     margin: 0;
+    align-self: center;
 }
 .addButton {
     background-image: url(plus.png);
