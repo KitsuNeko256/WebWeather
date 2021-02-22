@@ -13,7 +13,7 @@ html {
     background-color: var(--color_bg);
     color: var(--color_text);
     font-family: "Rubik";
-    font-size: 36px;
+    font-size: 20px;
     margin: 0 10% 0 10%;
 }
 
@@ -21,6 +21,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 60%;
 }
 .findMeButton {
     background-color: var(--color_fg_pink);
@@ -40,7 +41,7 @@ ul {
     justify-content: space-between;
     background-color: var(--color_fg_purple);
     border: 3px solid var(--color_border_purple);
-    padding: 15px 15px 15px 15px;
+    padding: 15px;
 }
 .mainCityHeader {
     width: 700px;
@@ -60,6 +61,10 @@ ul {
 .mainCity ul {
     width: 700px;
     flex-grow: 1;
+}
+.mainCity ul li {
+    font-size: 24px;
+    margin-bottom: 15px;
 }
 
 .favTitle {
@@ -104,7 +109,7 @@ ul {
     border: 3px solid var(--color_border_purple);
     padding: 10px 10px 0px 10px;
     margin: 20px;
-    width: 700px;
+    width: 400px;
     flex-grow: 1;
 }
 .favCityHeader {
@@ -112,6 +117,9 @@ ul {
     justify-content: space-between;
     align-items: center;
     margin-bottom:10px;
+}
+.favCityHeader h3 {
+    font-size: 30px;
 }
 .favCity .temperature {
     font-size: 50px;
