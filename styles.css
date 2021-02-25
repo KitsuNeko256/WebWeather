@@ -41,14 +41,14 @@ ul {
     justify-content: space-between;
     background-color: var(--color_fg_purple);
     border: 3px solid var(--color_border_purple);
-    padding: 15px;
+    padding: 15px 15px 0px 15px;
 }
 .mainCityHeader {
-    width: 700px;
+    width: 320px;
     flex-grow: 1;
     align-items: center;
 }
-.mainCityHeader h3 {
+.mainCityHeader h2 {
     margin-top: 10px;
     width: 100%;
     font-size: 48px; 
@@ -59,7 +59,7 @@ ul {
     font-size: 200px;
 }
 .mainCity ul {
-    width: 700px;
+    width: 320px;
     flex-grow: 1;
 }
 .mainCity ul li {
@@ -72,17 +72,19 @@ ul {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-}   
+    width: 100%;
+}
 .favInput {
     display: flex;
+    width: 70%;
 }
-.favInput textarea {
+.favInput input {
     background-color: var(--color_fg_pink);
     border: 3px solid var(--color_border_pink);
     color: var(--color_text);
     font-size: 36px;
+    width: 100%;
     height: 50px;
-    width: 600px;
     align-self: center;
 }
 .addButton {
@@ -100,7 +102,6 @@ ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: -20px;
 }
 .favCity {
     display: flex;
@@ -108,9 +109,8 @@ ul {
     background-color: var(--color_fg_purple);
     border: 3px solid var(--color_border_purple);
     padding: 10px 10px 0px 10px;
-    margin: 20px;
-    width: 400px;
-    flex-grow: 1;
+    margin-bottom: 20px;
+    width: 45%;
 }
 .favCityHeader {
     display: flex;
@@ -146,4 +146,72 @@ ul {
     height: 100px;
     width: 100px;
     border: none;
+}
+
+
+@media screen and (max-width: 1600px) {
+    .mainCityHeader .temperature {
+        font-size: 150px;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .mainCityHeader h2 {
+        font-size: 36px;
+    }
+    .mainCityHeader .temperature {
+        font-size: 100px;
+    }
+    .mainCity ul li {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+}
+@media screen and (max-width: 900px) {
+    html {
+        margin: 0 3%;
+    }
+    header {
+        font-size: 15px;
+    }
+
+    .mainCityHeader h2 {
+        font-size: 30px;
+    }
+    
+    .mainCityHeader .temperature {
+        font-size: 75px;
+    }
+
+}
+@media screen and (max-width: 800px){
+    .findMeButton span {
+        display: none;
+    }
+
+    .findMeButton {
+        background-image: url(update.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-color: transparent;
+        height: 50px;
+        width: 50px;
+    }
+    .favTitle h2 {
+        width: 100%;
+    }
+    .favInput {
+        width: 100%;
+    }
+    .favCity {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 600px) {
+    html {
+        margin: 0 1%;
+    }
+    .favInput input {
+        font-size: 20px;
+    }
 }

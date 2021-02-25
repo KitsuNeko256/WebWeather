@@ -14,13 +14,13 @@
 <body>
     <header>
         <h1>Погода здесь</h1>
-        <button type="button" class="findMeButton">Найти меня</button>
+        <button type="button" class="findMeButton"><span>Найти меня</span></button>
     </header>
     <main>
         <div class="mainCity">
             <div class="mainCityHeader">
-                <h3>Санкт-Петербург</h3>
-                <img src="cloud.png"/>
+                <h2>Санкт-Петербург</h2>
+                <img src="cloud.png" style="width: 40%"/>
                 <span class="temperature">8°C</span>
             </div>
             <ul class="weatherList">
@@ -33,11 +33,11 @@
         </div>
         <div class="favTitle">
             <h2>Избранное</h2>
-            <div class="favInput">
-                <textarea placeholder="Введите название города"></textarea>
+            <form class="favInput">
+                <input type="text" placeholder="Введите название города">
                 <button type="button" class="addButton"></button>
-            </div>
-        </div>
+            </form>
+        </div>  
         <ul class="favList">
             <li class="favCity">
                 <div class="favCityHeader">
@@ -117,41 +117,4 @@
         </ul>
     </main>
 </body>
-
-<!--
-<body>
-    <main>
-        <div class="mainPart">
-            <div class="examples">
-                <section>
-                    <h3>Скриншоты моих программ</h3>
-                    <div class="examplesImage">
-                        <h4>Платформер</h4>
-                        <img id="picGallery" src="pic1.png" onclick="picSwap()" style="width: 50%; height: 50%" />
-                        Скриншот из разрабатываемой мною игры, инновационный инди платформер с интересным геймплеем
-                        и не менее интересной графикой!
-                        Будущий шедевр!
-                        <div class="clearFloat"></div>
-                    </div>
-                </section>
-            </div>
-        </div>
-
-        <div class="chat">
-            Чат-бот:
-            <div class="chatMessageBox" id="chatMessageBox">
-            </div>
-            <div class="chatForm" style="width:100%;">
-                <label for="fname">Введите сообщение:</label><br>
-                <input type="text" id="chatText" style="width:70%;">
-                <input type="button" value="Отправить" onclick="chatMessage()" style="width:22%;">
-            </div>
-        </div>
-    </main>
-
-    <script src="lab5.js"></script>
-    <script src="script.js"></script>
-</body>
-
--->
 </html>
