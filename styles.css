@@ -14,7 +14,7 @@ html {
     color: var(--color_text);
     font-family: "Rubik";
     font-size: 20px;
-    margin: 0 10% 0 10%;
+    margin: 0 10%;
 }
 
 header {
@@ -72,7 +72,7 @@ ul {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-}
+}   
 .favInput {
     display: flex;
 }
