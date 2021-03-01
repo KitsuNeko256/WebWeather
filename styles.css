@@ -216,3 +216,24 @@ ul {
         font-size: 20px;
     }
 }
+@media screen and (max-width: 400px) {
+    html {
+        font-size: 15px;
+        margin: 0;
+    }
+    .mainCity ul li {
+        font-size: 15px;
+    }
+    .favInput input {
+        font-size: 20px;
+    }
+    .favCityHeader h3 {
+        font-size: 20px;
+    }
+    .favCity .temperature {
+        font-size: 40px;
+    }
+    .weatherList {
+        margin: 0;
+    }
+}
