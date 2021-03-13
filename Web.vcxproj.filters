@@ -21,5 +21,8 @@
     <None Include="index.html">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="script.js">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

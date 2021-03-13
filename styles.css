@@ -121,6 +121,9 @@ ul {
 .favCityHeader h3 {
     font-size: 30px;
 }
+.favCityHeader img {
+    width: 20%;
+}
 .favCity .temperature {
     font-size: 50px;
 }

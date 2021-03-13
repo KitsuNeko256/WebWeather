@@ -9,112 +9,56 @@
     <meta name="keywords" content="Андрей Козлов,Погода,Прогноз погоды">
     <link href='styles.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik">
+    <script src="script.js"></script>
 </head>
 
-<body>
+<body onload="init();">
     <header>
         <h1>Погода здесь</h1>
-        <button type="button" class="findMeButton"><span>Найти меня</span></button>
+        <button type="button" class="findMeButton" onclick="getLocation()"><span>Найти меня</span></button>
     </header>
     <main>
         <div class="mainCity">
             <div class="mainCityHeader">
                 <h2>Санкт-Петербург</h2>
-                <img src="cloud.png" style="width: 40%"/>
+                <img src="cloud.png" style="width: 40%" />
                 <span class="temperature">8°C</span>
             </div>
             <ul class="weatherList">
-                <li><b>Ветер</b> 5м/с</li>
+                <li><b>Ветер</b> 5 м/с</li>
                 <li><b>Облачность</b> Облачно</li>
                 <li><b>Давление</b> 1013 мм р.с.</li>
-                <li><b>Влажность</b> 42%</li>
+                <li><b>Влажность</b> 42 %</li>
                 <li><b>Координаты</b> [4.20, 12.69]</li>
             </ul>
         </div>
         <div class="favTitle">
             <h2>Избранное</h2>
-            <form class="favInput">
-                <input type="text" placeholder="Введите название города">
-                <button type="button" class="addButton"></button>
+            <form class="favInput" onsubmit="return false">
+                <input id="favInputName" type="text" placeholder="Введите название города">
+                <button id="favInputButton" type="button" class="addButton" onclick="addCity('name', true)"></button>
             </form>
-        </div>  
-        <ul class="favList">
-            <li class="favCity">
-                <div class="favCityHeader">
-                    <h3>Санкт-Петербург</h3>
-                    <img src="cloud.png" style="width: 20%" />
-                    <span class="temperature">8°C</span>
-                    <button type="button" class="deleteButton"></button>
-                </div>
-                <ul class="weatherList">
-                    <li><b>Ветер</b> 5м/с</li>
-                    <li><b>Облачность</b> Облачно</li>
-                    <li><b>Давление</b> 1013 мм р.с.</li>
-                    <li><b>Влажность</b> 42%</li>
-                    <li><b>Координаты</b> [4.20, 12.69]</li>
-                </ul>
-            </li>
-            <li class="favCity">
-                <div class="favCityHeader">
-                    <h3>Санкт-Петербург</h3>
-                    <img src="cloud.png" style="width: 20%" />
-                    <span class="temperature">8°C</span>
-                    <button type="button" class="deleteButton"></button>
-                </div>
-                <ul class="weatherList">
-                    <li><b>Ветер</b> 5м/с</li>
-                    <li><b>Облачность</b> Облачно</li>
-                    <li><b>Давление</b> 1013 мм р.с.</li>
-                    <li><b>Влажность</b> 42%</li>
-                    <li><b>Координаты</b> [4.20, 12.69]</li>
-                </ul>
-            </li>
-            <li class="favCity">
-                <div class="favCityHeader">
-                    <h3>Санкт-Петербург</h3>
-                    <img src="cloud.png" style="width: 20%" />
-                    <span class="temperature">8°C</span>
-                    <button type="button" class="deleteButton"></button>
-                </div>
-                <ul class="weatherList">
-                    <li><b>Ветер</b> 5м/с</li>
-                    <li><b>Облачность</b> Облачно</li>
-                    <li><b>Давление</b> 1013 мм р.с.</li>
-                    <li><b>Влажность</b> 42%</li>
-                    <li><b>Координаты</b> [4.20, 12.69]</li>
-                </ul>
-            </li>
-            <li class="favCity">
-                <div class="favCityHeader">
-                    <h3>Санкт-Петербург</h3>
-                    <img src="cloud.png" style="width: 20%" />
-                    <span class="temperature">8°C</span>
-                    <button type="button" class="deleteButton"></button>
-                </div>
-                <ul class="weatherList">
-                    <li><b>Ветер</b> 5м/с</li>
-                    <li><b>Облачность</b> Облачно</li>
-                    <li><b>Давление</b> 1013 мм р.с.</li>
-                    <li><b>Влажность</b> 42%</li>
-                    <li><b>Координаты</b> [4.20, 12.69]</li>
-                </ul>
-            </li>
-            <li class="favCity">
-                <div class="favCityHeader">
-                    <h3>Санкт-Петербург</h3>
-                    <img src="cloud.png" style="width: 20%" />
-                    <span class="temperature">8°C</span>
-                    <button type="button" class="deleteButton"></button>
-                </div>
-                <ul class="weatherList">
-                    <li><b>Ветер</b> 5м/с</li>
-                    <li><b>Облачность</b> Облачно</li>
-                    <li><b>Давление</b> 1013 мм р.с.</li>
-                    <li><b>Влажность</b> 42%</li>
-                    <li><b>Координаты</b> [4.20, 12.69]</li>
-                </ul>
-            </li>
+        </div>
+        <ul id="favList" class="favList">
         </ul>
     </main>
 </body>
 </html>
+
+<template id="favCityTemplate">
+    <li class="favCity">
+        <div class="favCityHeader">
+            <h3></h3>
+            <img/>
+            <span class="temperature"></span>
+            <button type="button" class="deleteButton"></button>
+        </div>
+        <ul class="weatherList">
+            <li><b>Ветер</b></li>
+            <li><b>Облачность</b></li>
+            <li><b>Давление</b></li>
+            <li><b>Влажность</b></li>
+            <li><b>Координаты</b></li>
+        </ul>
+    </li>
+</template>
