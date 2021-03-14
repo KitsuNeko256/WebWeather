@@ -46,7 +46,7 @@ function updateMainCity(xhr) {
 		let header = city.children[0];
 		header.children[0].innerHTML = cityData.name;
 		header.children[1].src = `https://openweathermap.org/img/wn/${cityData.weather[0].icon}@4x.png`;
-		header.children[2].innerHTML =  `${cityData.main.temp}°C`;
+		header.children[2].innerHTML =  `${Math.round(cityData.main.temp)}°C`;
 
 		updateWeatherList(city.children[1].children, cityData);
 		showCity(city);
@@ -57,7 +57,7 @@ function updateWeatherList(list, cityData) {
 	list[0].innerHTML = `<b>Ветер</b> ${cityData.wind.speed} м/с`;
 	list[1].innerHTML = `<b>Облачность</b> ${cityData.weather[0].description}`;
 	cityData.main.pressure *= 0.75; //turn from hpa to mm
-	list[2].innerHTML = `<b>Давление</b> ${cityData.main.pressure} мм р.с.`;
+	list[2].innerHTML = `<b>Давление</b> ${Math.round(cityData.main.pressure)} мм р.с.`;
 	list[3].innerHTML = `<b>Влажность</b> ${cityData.main.humidity} %`;
 	list[4].innerHTML = `<b>Координаты</b> [${cityData.coord.lon}, ${cityData.coord.lat}]`;
 }
@@ -116,7 +116,7 @@ function addCity(searchType, newCity, searchValue = document.getElementById('fav
 		let header = city.children[0];
 		header.children[0].innerHTML = cityName;
 		header.children[1].src = `https://openweathermap.org/img/wn/${cityData.weather[0].icon}@4x.png`;
-		header.children[2].innerHTML =  `${cityData.main.temp}°C`;
+		header.children[2].innerHTML =  `${Math.round(cityData.main.temp)}°C`;
 		header.children[3].setAttribute('onclick',`deleteCity(this, ${cityData.id})`);
 		
 		updateWeatherList(city.children[1].children, cityData);
@@ -129,7 +129,6 @@ function addCity(searchType, newCity, searchValue = document.getElementById('fav
 		}
       }
     };
-
 }
 
 function deleteCity(element, cityID) {
