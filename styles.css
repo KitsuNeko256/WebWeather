@@ -53,19 +53,22 @@ ul {
     width: 100%;
     font-size: 48px; 
 }
+.mainCityHeader img {
+    width: 25%;
+}
 
 .mainCityHeader .temperature {
     width: 50%;
-    font-size: 200px;
+    font-size: 150px;
 }
-.mainCity ul {
+.mainCity .weatherList {
     width: 320px;
     flex-grow: 1;
 }
-.mainCity ul li {
-    font-size: 24px;
-    margin-bottom: 15px;
-}
+.mainCity .weatherList li {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
 
 .favTitle {
     display: flex;
@@ -151,13 +154,27 @@ ul {
     border: none;
 }
 
+.cityLoadPlaceholder {
+    background-image: url(update.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
 
 @media screen and (max-width: 1600px) {
     .mainCityHeader .temperature {
-        font-size: 150px;
+        font-size: 125px;
+    }
+}
+@media screen and (max-width: 1400px) {
+    .mainCityHeader .temperature {
+        font-size: 110px;
     }
 }
 @media screen and (max-width: 1200px) {
+    html {
+        margin: 0 4%;
+    }
     .mainCityHeader h2 {
         font-size: 36px;
     }
@@ -168,11 +185,13 @@ ul {
         font-size: 20px;
         margin-bottom: 10px;
     }
+    .favCityHeader h2 {
+        font-size: 25px;
+    }
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
     html {
         margin: 0 3%;
-
     }
     header {
         font-size: 15px;
@@ -186,8 +205,25 @@ ul {
         font-size: 75px;
     }
 
+    .favCityHeader h2 {
+        font-size: 20px;
+    }
+    .favCityHeader .temperature {
+        font-size: 40px;
+    }
+
 }
-@media screen and (max-width: 800px){
+@media screen and (max-width: 800px) {
+    .mainCityHeader {
+        width: 100%;
+    }
+    .mainCityHeader .weatherList {
+        width: 100%;
+    }
+
+    .mainCityHeader .temperature {
+        font-size: 125px;
+    }
     .findMeButton span {
         display: none;
     }
@@ -215,8 +251,17 @@ ul {
     html {
         margin: 0 1%;
     }
+    .mainCityHeader .temperature {
+        font-size: 75px;
+    }
+    .mainCity .weatherList li {
+        font-size: 18px;
+    }
     .favInput input {
         font-size: 20px;
+    }
+    .favCity .temperature {
+        font-size: 30px;
     }
 }
 @media screen and (max-width: 400px) {
@@ -224,17 +269,20 @@ ul {
         font-size: 15px;
         margin: 0;
     }
-    .mainCity ul li {
+    .mainCityHeader .temperature {
+        font-size: 60px;
+    }
+    .mainCity .weatherList li {
         font-size: 15px;
     }
     .favInput input {
-        font-size: 20px;
+        font-size: 15px;
     }
     .favCityHeader h3 {
         font-size: 20px;
     }
     .favCity .temperature {
-        font-size: 40px;
+        font-size: 20px;
     }
     .weatherList {
         margin: 0;

@@ -12,24 +12,24 @@
     <script src="script.js"></script>
 </head>
 
-<body onload="init();">
+<body onload="init()">
     <header>
         <h1>Погода здесь</h1>
         <button type="button" class="findMeButton" onclick="getLocation()"><span>Найти меня</span></button>
     </header>
     <main>
-        <div class="mainCity">
+        <div id="mainCity" class="mainCity">
             <div class="mainCityHeader">
-                <h2>Санкт-Петербург</h2>
-                <img src="cloud.png" style="width: 40%" />
-                <span class="temperature">8°C</span>
+                <h2></h2>
+                <img/>
+                <span class="temperature"></span>
             </div>
             <ul class="weatherList">
-                <li><b>Ветер</b> 5 м/с</li>
-                <li><b>Облачность</b> Облачно</li>
-                <li><b>Давление</b> 1013 мм р.с.</li>
-                <li><b>Влажность</b> 42 %</li>
-                <li><b>Координаты</b> [4.20, 12.69]</li>
+                <li><b>Ветер</b></li>
+                <li><b>Облачность</b></li>
+                <li><b>Давление</b></li>
+                <li><b>Влажность</b></li>
+                <li><b>Координаты</b></li>
             </ul>
         </div>
         <div class="favTitle">
@@ -40,25 +40,25 @@
             </form>
         </div>
         <ul id="favList" class="favList">
+            <template id="favCityTemplate">
+                <li class="favCity">
+                    <div class="favCityHeader">
+                        <h3></h3>
+                        <img />
+                        <span class="temperature"></span>
+                        <button type="button" class="deleteButton"></button>
+                    </div>
+                    <ul class="weatherList">
+                        <li><b>Ветер</b></li>
+                        <li><b>Облачность</b></li>
+                        <li><b>Давление</b></li>
+                        <li><b>Влажность</b></li>
+                        <li><b>Координаты</b></li>
+                    </ul>
+                </li>
+            </template>
         </ul>
     </main>
 </body>
 </html>
 
-<template id="favCityTemplate">
-    <li class="favCity">
-        <div class="favCityHeader">
-            <h3></h3>
-            <img/>
-            <span class="temperature"></span>
-            <button type="button" class="deleteButton"></button>
-        </div>
-        <ul class="weatherList">
-            <li><b>Ветер</b></li>
-            <li><b>Облачность</b></li>
-            <li><b>Давление</b></li>
-            <li><b>Влажность</b></li>
-            <li><b>Координаты</b></li>
-        </ul>
-    </li>
-</template>
