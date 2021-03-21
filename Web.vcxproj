@@ -140,7 +140,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="index.html" />
+    <None Include="package-lock.json" />
+    <None Include="package.json" />
     <None Include="script.js" />
+    <None Include="server.js" />
     <None Include="styles.css" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

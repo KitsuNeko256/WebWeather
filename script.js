@@ -117,7 +117,7 @@ function addCity(searchType, newCity, searchValue = document.getElementById('fav
 		header.children[0].innerHTML = cityName;
 		header.children[1].src = `https://openweathermap.org/img/wn/${cityData.weather[0].icon}@4x.png`;
 		header.children[2].innerHTML =  `${Math.round(cityData.main.temp)}°C`;
-		header.children[3].setAttribute('onclick',`deleteCity(this, ${cityData.id})`);
+		header.children[3].addEventListener('click', function(){deleteCity(header.children[3], cityData.id)}, false);
 		
 		updateWeatherList(city.children[1].children, cityData);
 
