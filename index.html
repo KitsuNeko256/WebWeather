@@ -9,7 +9,7 @@
     <meta name="keywords" content="Андрей Козлов,Погода,Прогноз погоды">
     <link href='styles.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik">
-    <script src="script.js"></script>
+    <script src="script.js"></script>   
 </head>
 
 <body onload="init()">
@@ -36,7 +36,7 @@
             <h2>Избранное</h2>
             <form class="favInput" onsubmit="return false">
                 <input id="favInputName" type="text" placeholder="Введите название города">
-                <button id="favInputButton" type="button" class="addButton" onclick="addCity('name', true)"></button>
+                <button id="favInputButton" type="button" class="addButton" onclick="addCity('name')"></button>
             </form>
         </div>
         <ul id="favList" class="favList">

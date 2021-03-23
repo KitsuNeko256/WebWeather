@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/KitsuNeko256/WebWeather#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.5"
   }
 }

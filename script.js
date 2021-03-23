@@ -1,4 +1,6 @@
-﻿
+﻿const DIRNAME = "http://localhost:3000"
+
+
 function hideCity(city) {
 	city.children[0].style.visibility = "hidden";
 	city.children[1].style.visibility = "hidden";
@@ -10,7 +12,7 @@ function showCity(city) {
 	city.classList.remove("cityLoadPlaceholder");
 }
 
-function init() {
+function init() {	
 	getLocation();
 	initOffline();
 	initFavCityInput();
@@ -23,24 +25,28 @@ function getLocation() {
 		navigator.geolocation.getCurrentPosition(geoCity, defaultCity);
     } else { 
 		alert("Geolocation is not supported by this browser.");
+		defaultCity();
     }
 }
 function defaultCity() {
 	let cityName = "Санкт-Петербург";
 	let xhr = new XMLHttpRequest();
-	xhr.open("GET", `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=395cea13dd1f22db118d27c7297923c3&units=metric`);
+	xhr.open('GET', DIRNAME + `/weather/city?name=${cityName}`);
 	updateMainCity(xhr);
 }
 function geoCity(geoData) {
 	let lat = geoData.coords.latitude;
 	let lon = geoData.coords.longitude;
 	let xhr = new XMLHttpRequest();
-	xhr.open("GET", `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=395cea13dd1f22db118d27c7297923c3&units=metric`);
+	xhr.open('GET', DIRNAME + `/weather/coordinates?lat=${lat}&lon=${lon}`);
 	updateMainCity(xhr);
 }
 function updateMainCity(xhr) {
 	xhr.send();
-	xhr.onload = function() {
+	xhr.addEventListener("error", function() {
+		alert("Ошибка сервера. Перезагрузите страницу или попробуйте позже.");
+	});
+	xhr.addEventListener("load", function() {
 		let cityData = JSON.parse(xhr.response);
 		let city = document.getElementById("mainCity");
 		let header = city.children[0];
@@ -50,7 +56,7 @@ function updateMainCity(xhr) {
 
 		updateWeatherList(city.children[1].children, cityData);
 		showCity(city);
-	}	
+	});
 }
 
 function updateWeatherList(list, cityData) {
@@ -78,60 +84,90 @@ function initFavCityInput() {
 	});
 }
 function loadFavCities() {
-	for (let i = 0; i < window.localStorage.length; i++) {
-		addCity("id", false, window.localStorage.key(i));
-	}
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', DIRNAME + `/favorites`);
+	xhr.send();
+	xhr.addEventListener("error", function() {
+		alert("Ошибка сервера. Перезагрузите страницу или попробуйте позже.");
+	});
+	xhr.addEventListener("load", function() {
+		data = JSON.parse(xhr.response);
+		for (let i = 0; i < data.length; i++) {
+			addCity("id", data[i]._id);
+		}
+	});
 }
 
 
-function addCity(searchType, newCity, searchValue = document.getElementById('favInputName').value) {
-    let xhr = new XMLHttpRequest();
-	if (searchType == "name") {
-		searchValue = searchValue.toLowerCase();
-		xhr.open('GET', `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=395cea13dd1f22db118d27c7297923c3&units=metric`);
-    } else if (searchType == "id") {
-		xhr.open('GET', `https://api.openweathermap.org/data/2.5/weather?id=${searchValue}&appid=395cea13dd1f22db118d27c7297923c3&units=metric`);
+function addCity(searchType, searchValue = document.getElementById('favInputName').value) {
+	if (searchValue === '') {
+		return;
 	}
-	   
-	xhr.send();
-    
 	let template = document.getElementById("favCityTemplate");
 	let	clone = template.content.cloneNode(true);
 	let city = clone.children[0];
 	hideCity(city);
 	document.getElementById("favList").appendChild(city);
+	
+    let xhr = new XMLHttpRequest();
+	if (searchType == "name") {
+		searchValue = searchValue.toLowerCase();
+		let xhrPost = new XMLHttpRequest();
+		xhrPost.open('POST', DIRNAME + `/favorites?name=${searchValue}`);
+		xhrPost.send();
+		document.getElementById('favInputName').value = '';
+		xhrPost.addEventListener("load", function() {
+			if (xhrPost.status === 404) {
+				alert("Город не найден!");
+				city.remove();
+				return;
+			} else if (xhrPost.status === 409) {
+				alert("Город уже есть в списке!");
+				city.remove();
+				return;
+			} else if (xhrPost.status === 200) {
+				xhr.open('GET', DIRNAME + `/weather/city?name=${searchValue}`);
+				updateFavCity(xhr, city);
+			}
+		});
+    } else if (searchType == "id") {
+		xhr.open('GET', DIRNAME + `/weather/id?id=${searchValue}`);
+		updateFavCity(xhr, city);
+	}
+}
 
-    xhr.onload = function() {
-      if (xhr.status != 200) {
-        alert(`Город не найден!`);
-		city.remove();
-      } else {
+function updateFavCity(xhr, city) {
+	xhr.send();
+
+	xhr.addEventListener("error", function() {
+		alert("Ошибка сервера. Перезагрузите страницу или попробуйте позже.");
+	});
+	xhr.addEventListener("load",  function() {
         let cityData = JSON.parse(xhr.response);
-		let cityName = cityData.name;
-        if (newCity && window.localStorage.getItem(cityData.id) !== null) {
-			alert(`Город ${cityName} уже есть в списке!`);
-			city.remove();
-			return;
-		}
 		let header = city.children[0];
-		header.children[0].innerHTML = cityName;
+		header.children[0].innerHTML = cityData.name;
 		header.children[1].src = `https://openweathermap.org/img/wn/${cityData.weather[0].icon}@4x.png`;
-		header.children[2].innerHTML =  `${Math.round(cityData.main.temp)}°C`;
+		header.children[2].innerHTML = `${Math.round(cityData.main.temp)}°C`;
 		header.children[3].addEventListener('click', function(){deleteCity(header.children[3], cityData.id)}, false);
 		
 		updateWeatherList(city.children[1].children, cityData);
 
 		showCity(city);
-
-		if (newCity) {
-			window.localStorage.setItem(cityData.id, cityData.id);
-			document.getElementById('favInputName').value = '';
-		}
-      }
-    };
+    });
 }
 
 function deleteCity(element, cityID) {
-	window.localStorage.removeItem(cityID);
-	element.parentElement.parentElement.remove();
+	let xhr = new XMLHttpRequest();
+	xhr.open("DELETE", DIRNAME + `/favorites?id=${cityID}`);
+	xhr.send();
+	xhr.addEventListener("error", function() {
+		alert("Ошибка сервера. Перезагрузите страницу или попробуйте позже.");
+	});
+	xhr.addEventListener("load", function() {
+		if (xhr.status == 200) {
+			element.parentElement.parentElement.remove();
+		} else {
+			alert("Server error");
+		}
+	});
 }
