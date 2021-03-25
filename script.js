@@ -157,17 +157,20 @@ function updateFavCity(xhr, city) {
 }
 
 function deleteCity(element, cityID) {
+	element.disabled = true;
 	let xhr = new XMLHttpRequest();
 	xhr.open("DELETE", DIRNAME + `/favorites?id=${cityID}`);
 	xhr.send();
 	xhr.addEventListener("error", function() {
 		alert("Ошибка сервера. Перезагрузите страницу или попробуйте позже.");
+		element.disabled = false;
 	});
 	xhr.addEventListener("load", function() {
 		if (xhr.status == 200) {
 			element.parentElement.parentElement.remove();
 		} else {
 			alert("Server error");
+			element.disabled = false;
 		}
 	});
 }
